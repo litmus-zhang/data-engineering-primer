@@ -1,0 +1,25 @@
+services:
+  main-app:
+    container_name: main_application
+    build: .
+    depends_on: 
+      - main_database
+      - dataviz
+    
+  
+  main_database:
+    container_name: main_database
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+
+  dataviz:
+    container_name: data-vsiualization
+    image: metabase/metabase:latest
+    depends_on:
+      - main_database
+
+
+
+
